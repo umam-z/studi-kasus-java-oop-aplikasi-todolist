@@ -9,7 +9,7 @@ public class TodoListRepositoryImpl implements TodoListRepository {
     private boolean isFull() {
         var isFull = true;
 
-        // cek apakah model penuh
+        // cek apakah data penuh
         for (int i = 0; i < data.length; i++) {
             if (data[i] == null) {
                 isFull = false;
@@ -50,8 +50,22 @@ public class TodoListRepositoryImpl implements TodoListRepository {
     }
 
     @Override
-    public void remove(Integer number) {
-        
+    public boolean remove(Integer number) {
+        if ((number - 1) >= data.length || number < 0) {
+            return false;
+        } else if (data[number - 1] == null) {
+            return false;
+        } else {
+            // data[number - 1] = null;
+            for (int i = (number - 1); i < data.length; i++) {
+                if (i == (data.length - 1)) {
+                    data[i] = null;
+                } else {
+                    data[i] = data[i + 1];
+                }
+            }
+            return true;
+        }
     }
 
 }
