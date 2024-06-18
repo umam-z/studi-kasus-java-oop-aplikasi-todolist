@@ -47,7 +47,14 @@ public class TodoListView {
     }
 
     public void removeTodoList() {
+        System.out.println("MENGHAPUS TODOLIST");
+        var number = InputUtil.input("No Todo (x Batal)");
 
+        if (number.equals("x")) {
+            // batal
+        } else {
+            todoListService.removeTodoList(Integer.valueOf(number));
+        }
     }
     
 }
